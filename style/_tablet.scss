@@ -1,0 +1,48 @@
+aside, section{
+    width: 75%;
+    margin: 0 auto;
+}
+
+aside{
+    margin-top: 4em;
+
+    .centeredAside{
+        width: 50%;
+    }
+}
+
+section{
+    margin-top: 20px;
+}
+
+.bottomBorder::after{
+    width: 40%;
+}
+
+footer{  
+    .footerFlexbox{
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .footerBorder{
+        width: 5%;
+        margin: 0;
+        &::after{
+            position: absolute;
+            margin-bottom: 2rem;  
+            width: 0.1rem;
+            height: 8em;
+            background: #a19f9f;
+            border-radius: 100%;
+            content: "";
+        }
+    }
+
+    #contact{
+        margin: unset;
+    }
+}
+
+

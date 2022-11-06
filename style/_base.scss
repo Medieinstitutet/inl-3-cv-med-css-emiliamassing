@@ -1,0 +1,311 @@
+@use "variables" as var;
+
+@mixin visuallyHidden{
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+  
+    white-space: nowrap;
+    clip-path: inset(100%);
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+}
+
+@mixin RemoveVisuallyHidden{
+    position: unset;
+    width: unset;
+    height: unset;
+    margin: unset;
+    border: unset;
+    padding: unset;
+  
+    white-space: unset;
+    clip-path: unset;
+    clip: unset;
+    overflow: unset;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+body{
+    //Kolla ev efter en bättre bakgrundsbild som inte är vit nertill
+    background-image: url("../img/wallpaper.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+/*Menu*/
+
+nav{
+    background-color: var.$blue;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 50px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+.menuLinks{
+    width: 100%;
+    @include visuallyHidden();
+}
+
+.menuLinks.active{
+    @include RemoveVisuallyHidden();
+}
+
+.menuLinks ul{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    
+    li{
+        list-style-type: none;
+        text-align: center;
+        &:hover{    
+            background-color: #6e8eb6;
+        }
+        a{
+            color: var.$whiteTextColor;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            display: block;
+            font-family: var.$fontLibre;
+            font-size: 1.3rem;
+            font-weight: 300;
+            margin-top: 20px;
+            margin-bottom: 15px;
+        }
+    }
+}
+
+.menuText{
+    font-family: var.$fontLibre;
+    color: var.$whiteTextColor;
+    font-size: 1rem;
+    margin-top: 15px;
+    margin-left: 10px;
+}
+
+/*Menu button*/
+
+button{
+    background-color: transparent;
+    position: absolute;
+    border: 0;
+    top: 2px;
+    right: 1rem;
+    height: 45px;
+    width: 45px;
+}
+
+span{
+    display: block;
+    height: 3.3px;
+    width: 40px;
+    background-color: var.$whiteTextColor;
+    margin-bottom: 5px;
+    border-radius: 3px;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+//Test för animering
+button:focus span:nth-child(2){
+    opacity: 0;
+}
+
+button:focus span:nth-child(1){
+    transform: translateY(8px) rotate(45deg);
+}
+
+button:focus span:nth-child(3){
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/*H tags + p*/
+
+h1, h2, h3, h4{
+    text-align: center;
+    cursor: default;
+}
+
+h2, h3{
+    margin-top: 20px;
+}
+
+h1, h2, h3, h4, p, a, .progressBar{
+    font-family: var.$fontLibre;
+    color: var.$blackTextColor;
+}
+
+h2{
+    font-size: 1.7rem;
+}
+
+h3{
+    font-size: 1.2rem;
+    padding-top: 10px;
+}
+
+h4{
+    font-size: 1rem;
+}
+
+p{
+    font-weight: 200;
+    font-size: 0.9rem;
+    text-align: center;
+    cursor: default;
+    line-height: initial;
+}
+
+/*Border*/
+.bottomBorder{
+    width: 50%;
+    margin: 0 auto;
+
+    &::after{
+        position: absolute;
+        margin-bottom: 2rem;  
+        width: 50%;
+        height: 2px;
+        background: #a19f9f;
+        border-radius: 100%;
+        content: "";
+    }
+}
+
+/*Aside*/
+aside{
+    background-color: var.$contentBackgroundColor;
+    margin-top: 3.5em;
+    padding: 10px;
+
+    .centeredAside{
+        width: 65%;
+        margin: 0 auto;
+    }
+
+    h2{
+        font-size: 1.3rem;
+    }
+
+    .progressBar
+    {
+        text-align: center;
+        p{
+            margin: 0;
+        }
+    }
+
+    progress{
+        width: 11em;
+        height: 1.6em;
+        accent-color: var.$blue;
+    }
+
+    img{
+        width: auto;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+}
+
+
+/*Section*/
+section{
+    background-color: var.$contentBackgroundColor;
+    margin-top: 10px;
+    padding: 10px;
+
+    ul{
+        list-style-type: circle;
+        li{
+            font-family: var.$fontLibre ;
+            font-size: 0.8rem;
+            margin: 3px;
+            cursor: default;
+        }
+    }
+    
+
+    h3{
+        font-size: 1.5rem;
+        padding-top: 1em;
+    }
+}
+
+/*Footer*/
+footer{
+    background-color: var.$blue;
+    padding: 15px;
+    margin-top: 10px;
+
+    h3{
+        color: var.$whiteTextColor;
+        font-weight: 100;
+        font-size: 1.35rem;
+    }
+
+    p, .fa-brands, a{
+        color: var.$whiteTextColor;
+    }
+
+    a{
+        margin-bottom: 1rem;
+    }
+
+    .fa-brands{
+        margin: 10px;
+    }
+
+    .footerFlexbox{
+        display: flex;
+        flex-direction: column;
+    }
+
+    #contact{
+        margin: 0 auto;
+    }
+
+    .iconFlexbox{
+        display: flex;
+        justify-content: center;
+        font-size: 1.4rem;
+    }
+
+    .contactFlexbox{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footerBorder{
+        width: 55%;
+        margin: 0 auto;
+        &::after{
+            position: absolute;
+            margin-bottom: 2rem;  
+            width: 50%;
+            height: 2px;
+            background: #a19f9f;
+            border-radius: 100%;
+            content: "";
+        }
+    }
+
+    .copyright{
+        margin-top: 1.4em;
+    }
+}
